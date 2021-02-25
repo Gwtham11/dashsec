@@ -4,6 +4,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objs as go
+import dash_auth
 
 data = pd.read_csv('ASHO20.csv', header=None, skiprows=[0])
 data.columns = ['del', 'Date', 'Values']
@@ -42,6 +43,9 @@ figure.update_xaxes(
 
 app = dash.Dash(__name__)
 server = app.server
+auth = dash_auth.BasicAuth(
+app,
+    {'G11':'Gowtham11'})
 
 app.layout = html.Div([
     dcc.Graph(id='plot', figure=figure),
