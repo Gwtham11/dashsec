@@ -5,6 +5,7 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objs as go
 import dash_auth
+from flask import request
 
 data = pd.read_csv('ASHO20.csv', header=None, skiprows=[0])
 data.columns = ['del', 'Date', 'Values']
@@ -88,6 +89,7 @@ def update_figure(X):
             ])
         ))
     return figure
+app.scripts.config.serve_locally = True
 
 
 if __name__ == '__main__':
